@@ -35,7 +35,6 @@ import static de.endrullis.idea.postfixtemplates.utils.CollectionUtils._List;
 @SuppressWarnings("WeakerAccess")
 public class CptUtil {
 	public static final String PLUGIN_ID = "de.endrullis.idea.postfixtemplates";
-	public static final Set<String> SUPPORTED_LANGUAGES = new HashSet<>(_List("java", "javascript", "scala", "kotlin"));
 
 	public static Project findProject(PsiElement element) {
 		PsiFile containingFile = element.getContainingFile();
@@ -183,7 +182,7 @@ public class CptUtil {
 	}
 
 	public static Optional<File> getOldTemplateFile(@NotNull String language) {
-		if (SUPPORTED_LANGUAGES.contains(language.toLowerCase())) {
+		if (SupportedLanguages.supportedLanguageIds.contains(language.toLowerCase())) {
 			File file = new File(CptUtil.getTemplatesPath(), language + ".postfixTemplates");
 
 			if (file.exists()) {
@@ -222,7 +221,7 @@ public class CptUtil {
 	}
 
 	public static List<File> getTemplateFiles(@NotNull String language) {
-		if (SUPPORTED_LANGUAGES.contains(language.toLowerCase())) {
+		if (SupportedLanguages.supportedLanguageIds.contains(language.toLowerCase())) {
 			// eventually move old templates file to new directory
 			getOldTemplateFile(language);
 
@@ -244,7 +243,7 @@ public class CptUtil {
 	}
 
 	public static List<File> getEditableTemplateFiles(@NotNull String language) {
-		if (SUPPORTED_LANGUAGES.contains(language.toLowerCase())) {
+		if (SupportedLanguages.supportedLanguageIds.contains(language.toLowerCase())) {
 			// eventually move old templates file to new directory
 			getOldTemplateFile(language);
 
