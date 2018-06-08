@@ -438,4 +438,9 @@ public class CptUtil {
 		}
 	}
 
+	@NotNull
+	public static VirtualFile getVirtualFile(@NotNull PsiElement element) {
+		return element.getContainingFile().getViewProvider().getVirtualFile();
+	}
+
 }
